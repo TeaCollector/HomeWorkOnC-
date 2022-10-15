@@ -75,18 +75,22 @@
 // Задача 8. Напишите программу, которая на вход принимает число (N), а на выходе 
 // показывает все чётные числа от 1 до N.
 
-// int number;
-// Console.Write("А теперь выведем все четные числа от этого числа: ");
-// while (!int.TryParse(Console.ReadLine(), out number))
-// {
-//     Console.WriteLine("Ошибка ввода! Введите целое ЧИСЛО!!!");
-// }
-// int current = 2;
+int number;
+Console.Write("А теперь выведем все четные числа от этого положительные числа: ");
+while (!int.TryParse(Console.ReadLine(), out number))
+{
+    Console.WriteLine("Ошибка ввода! Введите целое ЧИСЛО!!!");
+}
 
-// while (current <= number) {
-//     if(current % 2 == 0)
-//     Console.Write(current + " ");
-//     else 
-//     continue;
-//     current +=2;
-// }
+if (number <0)
+    Console.WriteLine("Это отрицательное число, введите положительное.");
+
+int current = 2;
+
+while (current <= number) {
+    if(current % 2 == 0)
+    Console.Write(current + " ");
+    else 
+    continue;
+    current +=2;
+}
