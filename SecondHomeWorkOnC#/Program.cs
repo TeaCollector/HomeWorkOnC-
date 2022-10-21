@@ -24,11 +24,12 @@
 // {
 //     if (num < 100)
 //         return 0;
-//     while(num > 999) {
-//             num /= 10;
-//             if(num < 1000)
+//     while(num > 999) 
+//     {
+//         num /= 10;
+//         if(num < 1000)
 //             break;
-//         }
+//     }
 //     num %= 10; 
 //     return num;
 // }
