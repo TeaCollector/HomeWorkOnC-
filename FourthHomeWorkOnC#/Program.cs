@@ -26,20 +26,31 @@
 
 // Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
 
-// int SumOfDigits(int number) 
-// {
-//     int digitSum = 0;
-//     while (number != 0) 
-//     {
-//         digitSum = digitSum + (number % 10);
-//         number /= 10;
-//     }
-//     return digitSum;
-// }
+int SumOfDigits(int number) 
+{
+    int digitSum = 0;
+    while (number != 0) 
+    {
+        digitSum = digitSum + (number % 10);
+        number /= 10;
+    }
+    return digitSum;
+}
 
-// Console.Write("Input number: ");
-// int n = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine($"Sum of digits is {SumOfDigits(n)}");
+int proizvedenie(int num) 
+{
+    int sum = 0;
+    while(num != 0)
+    {
+        sum = sum + (num % 10);
+        num /= 10;
+    }
+    return sum;
+}
+
+Console.Write("Input number: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($"Sum of digits is {proizvedenie(n)}");
 
 
 
