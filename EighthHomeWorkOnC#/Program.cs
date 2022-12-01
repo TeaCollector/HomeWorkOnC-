@@ -180,100 +180,104 @@
 // которая будет построчно выводить массив, добавляя индексы каждого элемента.
 
 
-// int[,,] TrippleArray(int rows, int columns, int deep, int minValue, int maxValue)
-// {
-//     int[,,] trippleArray = new int[rows, columns, deep];
-//     int l = 0;
-//     if(rows * columns * deep > 89) return null;
-
-//     for(int i = 0; i < trippleArray.GetLength(0); i++)
-//     {
-//         for(int j = 0; j < trippleArray.GetLength(1); j++)
-//         {
-//             for(int k = 0; k < trippleArray.GetLength(2); k++) 
-//             {              
-//              int[] arrayForUniqElements = CreateUniqNumber(new int[rows*columns*deep], minValue, maxValue);
-//                 trippleArray[i, j, k] = arrayForUniqElements[l++];
-//             }
-//         }
-//     }
-//     return trippleArray;
-// }
-
-
-// void Show3DArray(int[,,] array)
-// {
-//     for(int i = 0; i < array.GetLength(0); i++) 
-//     {
-//         Console.WriteLine("On the page number " + i);
-//         for(int j = 0; j < array.GetLength(1); j++)
-//         {
-//             for(int k = 0; k < array.GetLength(2); k++)
-//             {
-                
-//                 Console.Write("Number: " + array[i, j, k]+ " position: " + "(" + j + "," + k + "," + i + ")    " );
-//             }
-//             Console.WriteLine();
-//         }
-//     }
-// }
-
-
-// Console.Write("Input number of rows: ");
-// int n = Convert.ToInt32(Console.ReadLine());
-// Console.Write("Input number of columns: ");
-// int m = Convert.ToInt32(Console.ReadLine());
-// Console.Write("Input number of deep: ");
-// int r = Convert.ToInt32(Console.ReadLine());
-// Console.Write("Input number of min possible value: ");
-// int minValue = Convert.ToInt32(Console.ReadLine());
-// Console.Write("Input number of max possible value: ");
-// int maxValue = Convert.ToInt32(Console.ReadLine());
-// int[,,] array = TrippleArray(n, m,r, minValue, maxValue);
-// Show3DArray(array);
-
-
-
-
-int[] CreateUniqNumber(int[] array)
+int[,,] TrippleArray(int rows, int columns, int deep, int minValue, int maxValue)
 {
-    int[] ar = new int[array.Length];
-    int i = 0;
-    int j = 0;
-    while(i < ar.Length || j < ar.Length)
+    int[,,] trippleArray = new int[rows, columns, deep];
+    int l = 0;
+    int[] arrayForUniqElements = CreateUniqNumber(new int[rows*columns*deep], minValue, maxValue + 1);
+    if(rows * columns * deep > 89) return null;
+
+    for(int i = 0; i < trippleArray.GetLength(0); i++)
     {
-        int number = new Random().Next(1,12);
-        if(number == ar[i])
+        for(int j = 0; j < trippleArray.GetLength(1); j++)
         {
-            i = 0;
-            continue;
-        } 
-        else 
-        {
-            i = 0;
-            ar[j++] = number;
+            for(int k = 0; k < trippleArray.GetLength(2); k++) 
+            {              
+                trippleArray[i, j, k] = arrayForUniqElements[l++];
+            }
         }
     }
-    return ar;
+    return trippleArray;
 }
 
-void ShowArray(int[] array)
+
+void Show3DArray(int[,,] array)
 {
-    for (int i = 0; i < array.Length; i++) 
-        Console.Write( + array[i] + " ");
-    Console.WriteLine();
+    for(int i = 0; i < array.GetLength(0); i++) 
+    {
+        Console.WriteLine("On the page number " + i);
+        for(int j = 0; j < array.GetLength(1); j++)
+        {
+            for(int k = 0; k < array.GetLength(2); k++)
+            {
+                
+               Console.Write("Number: " + array[i, j, k]+ " position: " + "(" + j + "," + k + ")    " );
+                // Console.Write(array[i, j, k] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
 }
 
-int[] ar = CreateUniqNumber(new int [10]);
 
-ShowArray(ar);
+Console.Write("Input number of rows: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input number of columns: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input number of deep: ");
+int r = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input number of min possible value: ");
+int minValue = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input number of max possible value: ");
+int maxValue = Convert.ToInt32(Console.ReadLine());
+int[,,] array = TrippleArray(n, m,r, minValue, maxValue);
+Show3DArray(array);
+
+
+
+
+int[] CreateUniqNumber(int[] array, int minValue, int maxValue)
+{
+    int[] newArr = new int[array.Length];
+    int j = 0;
+    while (j < newArr.Length) 
+   {
+    int number = new Random().Next(minValue, maxValue + 1);
+
+    for(int i = 0; i < newArr.Length; i++) 
+    {
+        if(number != newArr[i])
+            continue;
+        else 
+        {
+            number = new Random().Next(minValue, maxValue + 1);
+            i = 0;
+        }    
+    }
+    newArr[j++] = number;
+   }
+    return newArr;
+}
+
+// тестовый метод для массива:
+
+// void ShowArray(int[] array)
+// {
+//     for (int i = 0; i < array.Length; i++) 
+//         Console.Write( + array[i] + " ");
+//     Console.WriteLine();
+// }
+
+// int[] ar = CreateUniqNumber(new int [20], 0, 19);
+
+// ShowArray(ar);
 
 
 
 // ----------------------------------------------------------------------------------------
 
 
-
+// Не решена, к сожалению, не смог сформулировать правильные условия.
 
 
 
@@ -283,14 +287,36 @@ ShowArray(ar);
 // 11 16 15 06                  15 14 13 12 11 10 09
 // 10 09 08 07
  
- int[,] SpiralArray(int[,] array, int j, int i)
- {
-    int k = 0;
-    while (i < array.Length(0))
-    {
-        array[j, i] = k++;
-    }    
-    return array;
- }
+//  int[,] SpiralArray(int[,] array)
+//  {
+//     int k = 1;
+//     int i = 0;
+//     int j = 0;
+//     while(j != array.GetLength(0) * array.GetLength(1))
+//     {
+//         array[i, j++] = k++;
+//         if(j == array.GetLength(1) - 1) 
+//         {
+//             while(i < array.GetLength(0) - 1) 
+//             {
+//                 array[i++, j] = k++;
+//             }
+//             else if (j == 0) 
+//             {
+//                 array[]                
+//             }
+//         }
+        
+
+//     }   
+//     return array;
+// }
+
+// Console.Write("Input number of rows: ");
+// int n = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Input number of columns: ");
+// int m = Convert.ToInt32(Console.ReadLine());
+// int[,] array = SpiralArray(new int[n, m]);
+// show2Darray(array);
 
  
